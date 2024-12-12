@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Gradient Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/wallet_logo.png" alt="" width="70" height="30" class="d-inline-block align-text-top">
+                Digital Wallet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>                     <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <div style="display: flex; flex-direction: column;">
+                                    <img src="assets/digi_money2.jpg"
+                                         alt="login form" class="img-fluid mb-3" style="border-radius: 1rem 0 0 1rem; width: 100%;" />
+                                    <img src="assets/digi_money.jpg"
+                                         alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; width: 100%;" />
+                                </div>
+                            </div>
+                                                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <form id="signupForm" novalidate>
+                                        <div class="d-flex align-items-center mb-3 pb-1">
+                                            <i class="fas fa-wallet fa-2x me-3" style="color: #ff6219;"></i>
+                                            <span class="h-25 w-25"><img src="assets/wallet_logo.png" alt=""></span>
+                                        </div>
+                                    
+                                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: black;">Create your account and Top-up your wallet</h5>
+                                    
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="signupName" class="form-control form-control-lg" placeholder="Enter your full name" />
+                                            <label class="form-label" for="signupName">Full Name</label>
+                                        </div>
+                                    
+                                        <div class="form-outline mb-4">
+                                            <input type="email" id="signupEmail" class="form-control form-control-lg" placeholder="Enter your email" />
+                                            <label class="form-label" for="signupEmail">Email address</label>
+                                        </div>
+                                    
+                                        <div class="form-outline mb-4">
+                                            <input type="password" id="signupPassword" class="form-control form-control-lg" placeholder="Enter your password" />
+                                            <label class="form-label" for="signupPassword">Password</label>
+                                        </div>
+                                    
+                                        <h6 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px; color: black;">Payment Details (Minimum top-up: Rs.5000)</h6>
+                                    
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="cardholderName" class="form-control form-control-lg" placeholder="Enter the cardholder name" />
+                                            <label class="form-label" for="cardholderName">Cardholder Name</label>
+                                        </div>
+                                    
+                                        <div class="form-outline mb-4">
+                                            <input type="text" id="cardNumber" class="form-control form-control-lg" placeholder="Enter your 16-digit card number" />
+                                            <label class="form-label" for="cardNumber">Card Number</label>
+                                        </div>
+                                    
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="expiryDate" class="form-control form-control-lg" placeholder="MM/YY" />
+                                                    <label class="form-label" for="expiryDate">Expiration Date</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="cvv" class="form-control form-control-lg" placeholder="Enter your CVV" />
+                                                    <label class="form-label" for="cvv">CVV</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="pt-1 mb-4">
+                                            <button class="btn btn-dark btn-lg btn-block" type="submit">Sign Up & Top-up</button>
+                                        </div>
+                                    
+                                        <a class="small text-muted" href="login.html">Already have an account? Sign in here</a>
+                                    </form>
+                                                                                                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="signup.js"></script>
+</body>
+</html>

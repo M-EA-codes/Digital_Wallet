@@ -1,0 +1,133 @@
+/* Light mode styles */
+body {
+    background: linear-gradient(135deg, black, orange); /* Light mode gradient */
+    color: white;
+}
+
+.navbar-custom {
+    background: linear-gradient(135deg, black, orange);
+}
+
+.navbar-custom .navbar-brand, .navbar-custom .nav-link {
+    color: white !important;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Style section for login form */
+section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style the card for better visibility */
+.card {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust text colors */
+.form-label, .h5, .small {
+    color: black !important;
+}
+
+/* Button styling */
+.btn-dark {
+    background-color: black;
+    border: none;
+}
+
+.card-custom {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: black;
+}
+
+.btn-custom {
+    background-color: black;
+    color: white;
+}
+
+.card-title {
+    color: black;
+}
+
+.balance {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6219;
+}
+
+/* Styling categories and filters */
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-section input,
+.filter-section select {
+    margin-bottom: 10px;
+}
+
+/* Transition for dark mode */
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background: linear-gradient(135deg, black, orange); /* Dark mode gradient */
+    color: white;
+}
+
+.dark-mode .navbar-custom {
+    background: linear-gradient(135deg, black, orange); /* Dark navbar gradient */
+}
+
+.dark-mode .navbar-custom .navbar-brand,
+.dark-mode .navbar-custom .nav-link {
+    color: white !important; /* Light text */
+}
+
+.dark-mode .navbar-custom .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.dark-mode .card-custom {
+    background-color: rgba(255, 255, 255, 0.15); /* Dark card color */
+    color: white; /* Light text in cards */
+    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.5); /* Light orange shadow */
+}
+
+.dark-mode .btn-custom {
+    background-color: orange; /* Button background in dark mode */
+    color: black; /* Button text color */
+}
+
+.dark-mode .card-title,
+.dark-mode .balance {
+    color: orange; /* Highlighted text colors */
+}
+
+/* Add more styles as necessary for dark mode */

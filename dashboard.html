@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/wallet_logo.png" alt="" width="70" height="30" class="d-inline-block align-text-top">
+                Digital Wallet
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="topup.html" data-bs-toggle="modal" data-bs-target="#topUpModal">Top-up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add_item.html">Add Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light" id="darkModeToggle">Toggle Dark Mode</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Wallet Balance Card -->
+                <div class="card card-custom p-4 mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Wallet Balance</h5>
+                        <p class="balance" id="walletBalance">RS 5000</p>
+                        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#topUpModal">Top-up Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Stored Items Card -->
+                <div class="card card-custom p-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Stored Items</h5>
+                        <div class="filter-section">
+                            <input type="text" id="filterName" class="form-control" placeholder="Filter by item name/detail">
+                            <select id="filterCategory" class="form-select">
+                                <option value="">All Categories</option>
+                                <option value="cards">Cards</option>
+                                <option value="licenses">Licenses</option>
+                                <option value="passes">Passes</option>
+                                <option value="tickets">Tickets</option>
+                                <option value="passwords">Passwords</option>
+                            </select>
+                            <label for="startDate">Date Range</label>
+                            <input type="date" id="startDate" class="form-control">
+                            <input type="date" id="endDate" class="form-control">
+                        </div>
+                        <div id="filteredItemsList" class="item-grid">
+                            <!-- Dynamically filtered items will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categorized Items Section -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5 class="text-white mb-4">Stored Items by Category</h5>
+                <div class="item-grid" id="storedItemsGrid">
+                    <!-- Cards will appear here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top-up Modal -->
+    <div class="modal fade" id="topUpModal" tabindex="-1" aria-labelledby="topUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="topUpModalLabel">Top-up Wallet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="topUpForm">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Top-up Amount</label>
+                            <input type="number" class="form-control" id="amount" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Card Number</label>
+                            <input type="text" class="form-control" id="cardNumber" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiryDate" class="form-label">Expiry Date</label>
+                            <input type="month" class="form-control" id="expiryDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="">Top Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        // Function to load items from local storage and display them
+        function loadItems() {
+            const items = JSON.parse(localStorage.getItem('storedItems')) || [];
+            const filteredItemsList = document.getElementById('filteredItemsList');
+            filteredItemsList.innerHTML = ''; // Clear existing items
+
+            items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'item';
+                itemDiv.innerHTML = `<h6>${item.name}</h6><p>${item.category}</p><p>${item.date}</p>`;
+                filteredItemsList.appendChild(itemDiv);
+            });
+        }
+
+        // Add new item function
+        function addItem() {
+            // Your add item logic here
+            const newItem = {
+                name: 'Sample Item', // Replace with actual input
+                category: 'Sample Category', // Replace with actual input
+                date: new Date().toLocaleDateString() // Current date
+            };
+
+            const storedItems = JSON.parse(localStorage.getItem('storedItems')) || [];
+            storedItems.push(newItem);
+            localStorage.setItem('storedItems', JSON.stringify(storedItems));
+            loadItems();
+        }
+
+        // Toggle dark mode logic
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        // Load saved mode preference on page load
+        window.onload = function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            loadItems();
+        };
+
+        // Function to toggle dark mode
+document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    // Optionally, save the mode preference to local storage
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+});
+
+// Load the saved mode preference on page load
+window.onload = function() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    loadItems(); // Ensure items are loaded after applying the theme
+};
+
+// Get the wallet balance element and initialize from localStorage or default
+const walletBalanceElement = document.getElementById('walletBalance');
+let walletBalance = parseInt(localStorage.getItem('walletBalance')) || 5000; // Default to 5000 if no balance saved
+walletBalanceElement.textContent = `RS ${walletBalance}`;
+
+// Load items and balance on page load
+function loadItems() {
+    const items = JSON.parse(localStorage.getItem('storedItems')) || [];
+    const filteredItemsList = document.getElementById('filteredItemsList');
+    filteredItemsList.innerHTML = ''; // Clear existing items
+
+    items.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        itemDiv.innerHTML = `<h6>${item.name}</h6><p>${item.category}</p><p>${item.date}</p>`;
+        filteredItemsList.appendChild(itemDiv);
+    });
+}
+
+// Handle top-up form submission
+document.getElementById('topUpForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from reloading the page
+
+    const topUpAmount = parseInt(document.getElementById('amount').value);
+    if (isNaN(topUpAmount) || topUpAmount <= 0) {
+        alert("Please enter a valid top-up amount.");
+        return;
+    }
+
+    // Update the wallet balance
+    walletBalance += topUpAmount;
+    walletBalanceElement.textContent = `RS ${walletBalance}`;
+
+    // Save updated balance to localStorage
+    localStorage.setItem('walletBalance', walletBalance);
+
+    // Clear the form and close the modal
+    document.getElementById('topUpForm').reset();
+    document.querySelector('#topUpModal .btn-close').click();
+});
+
+// Toggle dark mode logic
+document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+});
+
+// Load saved mode preference and items on page load
+window.onload = function() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+
+    walletBalance = parseInt(localStorage.getItem('walletBalance')) || 5000;
+    walletBalanceElement.textContent = `RS ${walletBalance}`;
+
+    loadItems(); // Ensure items are loaded after applying the theme
+};
+
+    </script>
+</body>
+</html>
